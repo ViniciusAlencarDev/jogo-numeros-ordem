@@ -1,3 +1,14 @@
+body {
+    background-color: #f1f1f1;
+}
+
+#board {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .line {
     display: flex;
 }
