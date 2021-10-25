@@ -5,17 +5,21 @@ let positionNull;
 
 window.onload = () => {
     board = document.getElementById("board");
-    let level = prompt("Qual o nível? 4-10")
-    if(level < 4 || level > 10) {
-        alert('Opção inserida não permitida')
-        window.location.reload()
-    }
-    boardSize[0] = level
-    boardSize[1] = level
     init()
 }
 
 function init() {
+
+    if(confirm("Deseja alterar o nivel?")) {
+        let level = prompt("Qual o nível? 4-10")
+        if(level < 4 || level > 10) {
+            alert('Opção inserida não permitida')
+            window.location.reload()
+        }
+        boardSize[0] = level
+        boardSize[1] = level
+    }
+
     positionNull = [Math.floor(Math.random() * (boardSize[0] - 1)) + 1, Math.floor(Math.random() * (boardSize[1] - 1)) + 1]
     console.log(positionNull)
 
@@ -92,7 +96,7 @@ function verifyGameOver() {
     }
 
     if(win) {
-        alert('Ganhou')
+        alert('Ganhou!!!')
         alert('Novo Jogo')
         init()
     }
