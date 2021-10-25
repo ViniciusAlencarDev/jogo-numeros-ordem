@@ -2,16 +2,19 @@ let boardSize = [4, 4]
 let board;
 let logica = []
 let positionNull;
+let level = 4;
 
 window.onload = () => {
     board = document.getElementById("board");
-    init()
+    //init()
 }
 
 function init() {
+    console.log(level)
 
+    /*
     if(confirm("Deseja alterar o nivel?")) {
-        let level = prompt("Qual o nível? 4-10")
+        level = prompt("Qual o nível? 4-10")
         if(level < 4 || level > 10) {
             alert('Opção inserida não permitida')
             window.location.reload()
@@ -19,6 +22,9 @@ function init() {
         boardSize[0] = level
         boardSize[1] = level
     }
+    */
+    boardSize[0] = level
+    boardSize[1] = level
 
     positionNull = [Math.floor(Math.random() * (boardSize[0] - 1)) + 1, Math.floor(Math.random() * (boardSize[1] - 1)) + 1]
     console.log(positionNull)
@@ -97,8 +103,25 @@ function verifyGameOver() {
 
     if(win) {
         alert('Ganhou!!!')
-        alert('Novo Jogo')
+        
+        board.innerHTML = `
+            <button class='square' style="width: auto" onclick="init()">Novo Jogo</button>
+            <div style="display: flex; justify-content: space-between; align-items: center">
+                <button class='square' onclick="changeLevel('-')">-</button>
+                <div id="info-level">4</div>
+                <button class='square' onclick="changeLevel('+')">+</button>
+            </div>
+        `
+        
         init()
     }
         
+}
+
+function changeLevel(type) {
+    if(type == "-" && level > 4)
+        level -= 1
+    else if(type == "+" && level < 10)
+        level += 1
+    document.getElementById("info-level").innerHTML = level
 }

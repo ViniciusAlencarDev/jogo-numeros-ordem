@@ -9,6 +9,13 @@
     <script src="script.js"></script>
 </head>
 <body>
-    <div id="board"></div>
+    <div id="board">
+        <button class='square' style="width: auto" onclick="init()">Novo Jogo</button>
+        <div style="display: flex; justify-content: space-between; align-items: center">
+            <button class='square' onclick="changeLevel('-')">-</button>
+            <div id="info-level">4</div>
+            <button class='square' onclick="changeLevel('+')">+</button>
+        </div>
+    </div>
 </body>
 </html>
