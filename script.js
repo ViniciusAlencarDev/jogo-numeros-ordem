@@ -1,4 +1,4 @@
-let boardSize = [5, 5]
+let boardSize = [4, 4]
 let board;
 let logica = []
 let positionNull;
@@ -18,6 +18,7 @@ function init() {
     }
     listaNumeros.sort(() => .5 - Math.random())
 
+    logica = []
     for(i = 0; i < boardSize[0]; i++) {
         line = []
         for(j = 0; j < boardSize[1]; j++) {
