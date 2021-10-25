@@ -9,6 +9,7 @@
     <script src="script.js"></script>
 </head>
 <body>
+    <button id="button-game-over" onclick="gamerOver()">X</button>
     <div id="board">
         <button class='square' style="width: auto" onclick="init()">Novo Jogo</button>
         <div style="display: flex; justify-content: space-between; align-items: center">
@@ -16,6 +17,13 @@
             <div id="info-level">4</div>
             <button class='square' onclick="changeLevel('+')">+</button>
         </div>
+        <divv style="display: flex; justify-content: center; align-items: center; margin-top: 10px;"> 
+            <span id="record"></span>
+        </div>
+        <script>
+            if(window.localStorage.getItem("@record"))
+                document.getElementById("record").innerHTML = "Record: " + window.localStorage.getItem("@record") + " jogadas"
+        </script>
     </div>
 </body>
 </html>

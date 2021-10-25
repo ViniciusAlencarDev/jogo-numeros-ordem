@@ -1,30 +1,21 @@
 let boardSize = [4, 4]
 let board;
-let logica = []
+let logica = [];
 let positionNull;
 let level = 4;
+let jogadas = 0
 
 window.onload = () => {
     board = document.getElementById("board");
-    //init()
 }
 
 function init() {
-    console.log(level)
+    document.getElementById("button-game-over").style = "display: block"
 
-    /*
-    if(confirm("Deseja alterar o nivel?")) {
-        level = prompt("Qual o nível? 4-10")
-        if(level < 4 || level > 10) {
-            alert('Opção inserida não permitida')
-            window.location.reload()
-        }
-        boardSize[0] = level
-        boardSize[1] = level
-    }
-    */
     boardSize[0] = level
     boardSize[1] = level
+
+    jogadas = 0
 
     positionNull = [Math.floor(Math.random() * (boardSize[0] - 1)) + 1, Math.floor(Math.random() * (boardSize[1] - 1)) + 1]
     console.log(positionNull)
@@ -82,6 +73,8 @@ function change(x, y) {
         logica[x][y] = null;
         positionNull = [x, y]
 
+        jogadas++;
+
         draw()
         verifyGameOver()
     }
@@ -102,20 +95,31 @@ function verifyGameOver() {
     }
 
     if(win) {
-        alert('Ganhou!!!')
-        
-        board.innerHTML = `
-            <button class='square' style="width: auto" onclick="init()">Novo Jogo</button>
-            <div style="display: flex; justify-content: space-between; align-items: center">
-                <button class='square' onclick="changeLevel('-')">-</button>
-                <div id="info-level">4</div>
-                <button class='square' onclick="changeLevel('+')">+</button>
-            </div>
-        `
-        
+        alert('Ganhou!!! ' + jogadas + " jogadas!")
+        if(window.localStorage.getItem('@record') < jogadas)
+            window.localStorage.setItem('@record', jogadas)
+        gamerOver();
         init()
     }
         
+}
+
+function gamerOver() {
+    board.innerHTML = `
+        <button class='square' style="width: auto" onclick="init()">Novo Jogo</button>
+        <div style="display: flex; justify-content: space-between; align-items: center">
+            <button class='square' onclick="changeLevel('-')">-</button>
+            <div id="info-level">${level}</div>
+            <button class='square' onclick="changeLevel('+')">+</button>
+        </div>
+        <divv style="display: flex; justify-content: center; align-items: center; margin-top: 10px;"> 
+            <span id="record"></span>
+        </div>
+    `
+    if(window.localStorage.getItem("@record"))
+                document.getElementById("record").innerHTML = "Record: " + window.localStorage.getItem("@record") + " jogadas"
+
+    document.getElementById("button-game-over").style = "display: none"
 }
 
 function changeLevel(type) {
