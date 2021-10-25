@@ -7,16 +7,21 @@
     height: 40px;
     background-color: rgb(68, 0, 255);
     display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 1px;
     text-align: center;
     cursor: pointer;
     box-shadow: 1px 1px 10px 1px darkgray;
-    border: 1px solid gray;
+    border: 1px solid white;
     color: white;
     font-size: 20pt;
+    border-radius: 5px;
 }
 
 .square-null {
-    background-color: darkgray;
+    background-color: transparent;
+    border: 1px solid transparent;
+    box-shadow: none;
     cursor: initial;
 }
