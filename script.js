@@ -3,7 +3,7 @@ let board;
 let logica = [];
 let positionNull;
 let level = 4;
-let jogadas = 0
+let plays = 0
 
 window.onload = () => {
     board = document.getElementById("board");
@@ -11,11 +11,13 @@ window.onload = () => {
 
 function init() {
     document.getElementById("button-game-over").style = "display: block"
+    document.getElementById("info-plays").style = "display: block"
 
     boardSize[0] = level
     boardSize[1] = level
 
-    jogadas = 0
+    plays = 0
+    document.getElementById('info-plays').innerHTML = plays + ' jogadas'
 
     positionNull = [Math.floor(Math.random() * (boardSize[0] - 1)) + 1, Math.floor(Math.random() * (boardSize[1] - 1)) + 1]
     console.log(positionNull)
@@ -73,7 +75,8 @@ function change(x, y) {
         logica[x][y] = null;
         positionNull = [x, y]
 
-        jogadas++;
+        plays++;
+        document.getElementById('info-plays').innerHTML = plays + ' jogadas'
 
         draw()
         verifyGameOver()
@@ -95,9 +98,9 @@ function verifyGameOver() {
     }
 
     if(win) {
-        alert('Ganhou!!! ' + jogadas + " jogadas!")
-        if(window.localStorage.getItem('@record') < jogadas)
-            window.localStorage.setItem('@record', jogadas)
+        alert('Ganhou!!! ' + plays + " plays!")
+        if(window.localStorage.getItem('@record') < plays)
+            window.localStorage.setItem('@record', plays)
         gamerOver();
         init()
     }
@@ -120,6 +123,7 @@ function gamerOver() {
                 document.getElementById("record").innerHTML = "Record: " + window.localStorage.getItem("@record") + " jogadas"
 
     document.getElementById("button-game-over").style = "display: none"
+    document.getElementById("info-plays").style = "display: none"
 }
 
 function changeLevel(type) {
