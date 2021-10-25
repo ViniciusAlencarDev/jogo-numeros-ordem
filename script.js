@@ -5,6 +5,13 @@ let positionNull;
 
 window.onload = () => {
     board = document.getElementById("board");
+    let level = prompt("Qual o nível? 4-10")
+    if(level < 4 || level > 10) {
+        alert('Opção inserida não permitida')
+        window.location.reload()
+    }
+    boardSize[0] = level
+    boardSize[1] = level
     init()
 }
 
