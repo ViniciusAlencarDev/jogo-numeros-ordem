@@ -1,0 +1,22 @@
+.line {
+    display: flex;
+}
+
+.square, .square-null {
+    width: 40px;
+    height: 40px;
+    background-color: rgb(68, 0, 255);
+    display: flex;
+    margin: 1px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 1px 1px 10px 1px darkgray;
+    border: 1px solid gray;
+    color: white;
+    font-size: 20pt;
+}
+
+.square-null {
+    background-color: darkgray;
+    cursor: initial;
+}
